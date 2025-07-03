@@ -2,13 +2,18 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 16
     commands:
-      - npm install
+      - echo "Cleaning and installing dependencies"
+      - npm ci || npm install
+
   build:
     commands:
+      - echo "Running production build"
       - npm run build
 
 artifacts:
-  base-directory: build
   files:
     - '**/*'
+  base-directory: build
